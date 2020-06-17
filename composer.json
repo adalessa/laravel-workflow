@@ -1,10 +1,10 @@
 {
-    "name": "brexis/laravel-workflow",
+    "name": "adalessa/laravel-workflow",
     "description": "Integerate Symfony Workflow component into Laravel.",
-    "keywords": ["workflow", "symfony", "laravel", "laravel5", "laravel6"],
+    "keywords": ["workflow", "symfony", "laravel", "laravel7"],
     "license": "MIT",
     "require": {
-        "php": ">=5.5.9",
+        "php": ">=7.3.0",
         "symfony/workflow": "^5.0",
         "symfony/process": "^5.0",
         "symfony/event-dispatcher": "^5.0",
