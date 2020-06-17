@@ -1,10 +1,12 @@
-# Laravel workflow [![Build Status](https://travis-ci.org/brexis/laravel-workflow.svg?branch=1.1.2)](https://travis-ci.org/brexis/laravel-workflow)
+# Laravel workflow 
+
+Fork of Brexis package, I just Updated to laravel 7 and symfony 5
 
 Use the Symfony Workflow component in Laravel
 
 ### Installation
 
-    composer require brexis/laravel-workflow
+    composer require adalessa/laravel-workflow
 
 #### For laravel <= 5.4
 
@@ -106,8 +108,8 @@ $workflow->apply($post, 'to_review');
 $post->save(); // Don't forget to persist the state
 
 // Using the WorkflowTrait
-$post->workflow_can('publish'); // True
-$post->workflow_can('to_review'); // False
+$post->workflowCan('publish'); // True
+$post->workflowCan('to_review'); // False
 
 // Get the post transitions
 foreach ($post->workflow_transitions() as $transition) {
@@ -119,7 +121,7 @@ foreach ($post->workflow_transitions($workflowName) as $transition) {
 }
 
 // Apply a transition
-$post->workflow_apply('publish');
+$post->workflowApply('publish');
 $post->save();
 ```
 

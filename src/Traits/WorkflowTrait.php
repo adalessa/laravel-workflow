@@ -9,17 +9,17 @@ use Workflow;
  */
 trait WorkflowTrait
 {
-    public function workflow_apply($transition, $workflow = null)
+    public function workflowApply($transition, $workflow = null)
     {
         return Workflow::get($this, $workflow)->apply($this, $transition);
     }
 
-    public function workflow_can($transition, $workflow = null)
+    public function workflowCan($transition, $workflow = null)
     {
         return Workflow::get($this, $workflow)->can($this, $transition);
     }
 
-    public function workflow_transitions($workflow = null)
+    public function workflowTransitions($workflow = null)
     {
         return Workflow::get($this, $workflow)->getEnabledTransitions($this);
     }

@@ -7,8 +7,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Workflow\Definition;
 use Symfony\Component\Workflow\DefinitionBuilder;
 use Symfony\Component\Workflow\MarkingStore\MarkingStoreInterface;
-use Symfony\Component\Workflow\MarkingStore\MultipleStateMarkingStore;
-use Symfony\Component\Workflow\MarkingStore\SingleStateMarkingStore;
+use Symfony\Component\Workflow\MarkingStore\MethodMarkingStore;
 use Symfony\Component\Workflow\Registry;
 use Symfony\Component\Workflow\StateMachine;
 use Symfony\Component\Workflow\SupportStrategy\InstanceOfSupportStrategy;
@@ -143,19 +142,18 @@ class WorkflowRegistry
      */
     protected function getMarkingStoreInstance(array $workflowData)
     {
+        $singleState = true;
+        $property = 'currentPlace';
+
         $markingStoreData = isset($workflowData['marking_store']) ? $workflowData['marking_store'] : [];
-        $arguments = isset($markingStoreData['arguments']) ? $markingStoreData['arguments'] : [];
+        $property = isset($markingStoreData['arguments']) ? $markingStoreData['arguments'] : [];
 
         if (isset($markingStoreData['class'])) {
-            $className = $markingStoreData['class'];
+            /* $className = $markingStoreData['class']; */
         } elseif (isset($markingStoreData['type']) && $markingStoreData['type'] === 'multiple_state') {
-            $className = MultipleStateMarkingStore::class;
-        } else {
-            $className = SingleStateMarkingStore::class;
+            $singleState = false;
         }
 
-        $class = new \ReflectionClass($className);
-
-        return $class->newInstanceArgs($arguments);
+        return new MethodMarkingStore($singleState, ...$property);
     }
 }

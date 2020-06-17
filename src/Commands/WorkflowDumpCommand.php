@@ -62,7 +62,7 @@ class WorkflowDumpCommand extends Command
 
         $dotCommand = "dot -T$format -o $workflowName.$format";
 
-        $process = new Process($dotCommand);
+        $process = new Process(explode(" ", $dotCommand));
         $process->setInput($dumper->dump($definition));
         $process->mustRun();
     }
