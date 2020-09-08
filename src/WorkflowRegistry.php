@@ -143,7 +143,6 @@ class WorkflowRegistry
     protected function getMarkingStoreInstance(array $workflowData)
     {
         $singleState = true;
-        $property = 'currentPlace';
 
         $markingStoreData = isset($workflowData['marking_store']) ? $workflowData['marking_store'] : [];
         $property = isset($markingStoreData['arguments']) ? $markingStoreData['arguments'] : [];
